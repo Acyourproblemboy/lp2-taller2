@@ -3,6 +3,15 @@
 {% block titulo %}Tienda Virtual{% endblock %}
 
 {% block contenido %}
-
+ <table align="center">
+    {% for producto in productos %}
+      <tr>
+        <td>{{ producto.marca }}</td>
+        <td><a href="/producto/{{ producto.id }}">{{ producto.nombre }}</a></td>
+        <td style="text-align:right">{{ "{:,}".format(producto.precio) }}</td>
+      </tr>
+    {% endfor %}
+ </table>
 
 {% endblock %}
+# Se muestra una tabla con los productos disponibles, cada producto es un enlace a su página de detalle.

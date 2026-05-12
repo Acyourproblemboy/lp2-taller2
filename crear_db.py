@@ -1,13 +1,25 @@
 # importar la librería para gestionar la DB
 import sqlite3
 
-# establecer la conexion
+# establecer la conexion y crear el cursor para ejecutar las consultas
+conexion = sqlite3.connect('prueba.sqlite3')
+cursor = conexion.cursor()
 
 # eliminar la tabla
+cursor.execute("""
+DROP TABLE IF EXISTS productos;
+""")
 
 # crear la tabla
 cursor.execute("""
-
+CREATE TABLE IF NOT EXISTS productos(
+  id INTEGER PRIMARY KEY,
+  categoria TEXT NOT NULL,
+  marca TEXT NOT NULL,
+  nombre TEXT NOT NULL,
+  descripcion TEXT NOT NULL,
+  precio INTEGER NOT NULL  
+); 
 """)
 
 # insertar los datos iniciales
@@ -24,9 +36,9 @@ datos = [
 ]
 
 cursor.executemany("""
-
+INSERT INTO productos VALUES (?,?,?,?,?,?);     
 """, datos)
 
-# grabar
+# grabar la informacion
 conexion.commit()
 conexion.close()

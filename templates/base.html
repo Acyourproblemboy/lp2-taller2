@@ -1,9 +1,12 @@
 <!doctype html>
 <html>
   <head>
-
+<title>{% block titulo %}{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
   </head>
   <body>
-
+<center><img src="{{ url_for('static', filename='imagenes/titulo1.png') }}" class ="center"></center>
+    {% block contenido %}{% endblock %}
   </body>
 </html>
+#esta es la plantilla base, que es extendida por las demás plantillas. Contiene el bloque titulo y el bloque contenido, que son reemplazados por las plantillas hijas.
